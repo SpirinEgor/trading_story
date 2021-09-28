@@ -1,9 +1,8 @@
 from typing import List, Tuple
 
-from dateutil.rrule import MONTHLY, DAILY
 from pandas import DataFrame, Series
 
-from models import Event, TimeSeries
+from models import Event, TimeSeries, TradingType
 
 
 def create_event(data: Series) -> Event:
@@ -12,7 +11,7 @@ def create_event(data: Series) -> Event:
         lot_size=data["lot_size"],
         price=data["price"],
         platform=data["platform_id"],
-        trading_type=MONTHLY if data["trading_type"] == "monthly" else DAILY
+        trading_type=TradingType.MONTHLY if data["trading_type"] == "monthly" else TradingType.DAILY
     )
 
 
